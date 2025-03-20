@@ -3,6 +3,7 @@ package com.example.projeto_api.api
 
 import com.example.projeto_api.Model.Comentario
 import com.example.projeto_api.Model.Postagem
+import com.example.projeto_api.Model.foto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -46,7 +47,10 @@ interface PostagemAPI {
         @Body postagem: Postagem
     ): Response<Postagem>
 
-
+    @GET("photos/{id}")
+    suspend fun recuperarFoto(
+        @Path("id") id: Int
+    ): Response<foto>
 
 
     @GET("posts/{id}")

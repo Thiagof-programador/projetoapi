@@ -26,7 +26,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="08dp"
         android:layout_marginEnd="16dp"
         android:text="POST"
         android:textSize="20sp"
@@ -40,7 +39,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="POST FORM"
         android:textSize="20sp"
@@ -54,7 +52,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="08dp"
         android:layout_marginEnd="16dp"
         android:text="PUT"
         android:textSize="20sp"
@@ -68,7 +65,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="08dp"
         android:layout_marginEnd="16dp"
         android:text="PATCH"
         android:textSize="20sp"
@@ -82,7 +78,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="08dp"
         android:layout_marginEnd="16dp"
         android:text="DELETE"
         android:textSize="20sp"
@@ -92,11 +87,22 @@
         app:layout_constraintTop_toBottomOf="@+id/btnPatch" />
 
     <Button
+        android:id="@+id/btnimage"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="IMAGE PICASSO"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnDelete" />
+
+    <Button
         android:id="@+id/BtnGetCom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="GET Comments"
         android:textSize="20sp"
@@ -126,17 +132,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="386dp"
-        android:layout_height="132dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="376dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/ImageFoto"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <ImageView
+        android:id="@+id/ImageFoto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BtnDelete" />
+        app:layout_constraintTop_toBottomOf="@+id/btnimage"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

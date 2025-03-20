@@ -17,7 +17,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import com.example.projeto_api.Model.Comentario
 import com.example.projeto_api.Model.Endereco
+import com.example.projeto_api.Model.foto
 import com.example.projeto_api.api.EnderecoApi
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -85,6 +87,12 @@ class MainActivity : AppCompatActivity() {
         binding.BtnDelete.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 removerPostagem()
+            }
+        }
+
+        binding.btnimage.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                recupararFotoUnica()
             }
         }
 
@@ -367,6 +375,37 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main){
                     binding.textView.text = "ERRO AO REMOVER POSTAGEM: CODE: ${retorno.code()}"
                 }
+            }
+
+        }
+    }
+    private suspend fun recupararFotoUnica() {
+        var retorno: Response<foto>? = null
+
+        try {
+            val postagemAPI = retrofit.create(PostagemAPI::class.java)
+            retorno = postagemAPI.recuperarFoto(5)
+        }catch (e:Exception){
+            e.printStackTrace()
+            Log.i("info_jsonplace","Erro ao recuperar 1")
+
+        }
+        if(retorno != null){
+            if(retorno.isSuccessful){
+                val foto = retorno.body()
+
+                Log.i("info_jsonplace","Id: ${foto?.id} - ${foto?.url} ")
+                // só pode ser execultado na main pois esta usando CoroutineScope(Dispatchers.IO)
+                withContext(Dispatchers.Main){
+                    binding.textView.text = "CODE: ${retorno.code()} Id: ${foto?.id} - ${foto?.url} "
+                    Picasso.get()
+                        .load(foto?.url)
+                        .into(binding.ImageFoto)
+                }
+
+            }else{
+                Log.i("info_jsonplace","CODE: ${retorno.code()} Erro ao recuperar 2")
+
             }
 
         }
